@@ -1,23 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route } from "react-router-dom";
+import { useSelector, useDispatch } from 'react-redux';
 
-function App() {
+import Home from "./pages/Home";
+import ProtectedRoutes from "./components/ProtectedRoutes";
+import Pokemons from './pages/Pokemons';
+import PokemonDetail from './pages/PokemonDetail';
+import Settings from './pages/Settings';
+
+const App = () => {
+  const {theme} = useSelector(state => state);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={`App ${theme}`}>
+      <Routes>
+        <Route path="/" exact element={<Home />}/>
+        <Route element={<ProtectedRoutes />}>
+          <Route path="/pokedex" element={<Pokemons />} />
+          <Route path="/pokedex/:idOrName" element={<PokemonDetail />} />
+        </Route>        
+        <Route path="/settings" element={<Settings />} />
+      </Routes>
     </div>
   );
 }
