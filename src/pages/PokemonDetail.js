@@ -40,7 +40,7 @@ const PokemonDetail = () => {
                 <Link to="/pokedex">Back</Link>
             </div>          
             <div className="">
-                <img src={pokemon.sprites.front_default} alt={pokemon.id} />
+                <img src={`https://cdn.traction.one/pokedex/pokemon/${pokemon.id}.png`} alt={pokemon.id} />
                 <h3>{pokemon.name}</h3>                       
             </div>
         </div>
